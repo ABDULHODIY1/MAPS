@@ -2,7 +2,7 @@
 pip3 instal django
 ~~~~~
 ~~~~~
-pip install djangorestframework
+pip3 install djangorestframework
 ~~~~~
 
 ~~~~~
