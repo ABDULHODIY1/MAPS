@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Yandex Map Misoli</title>
+    <style>
+        #map {
+            height: 400px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <h1>Yandex Map Misoli</h1>
+    <div id="map"></div>
+
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=42f74753-1f3a-4018-bcd9-bce1fd7dea21&lang=uz_UZ" type="text/javascript"></script>
+    <script type="text/javascript">
+        ymaps.ready(init);
+
+        function init() {
+            var map = new ymaps.Map('map', {
+                center: [41.2942336, 69.2518912], // Sizning kordinatalaringiz
+                zoom: 12
+            });
+
+            var marker = new ymaps.Placemark([41.2942336, 69.2518912], { // Sizning kordinatalaringiz
+                hintContent: 'Sizning Joylashuvingiz',
+                balloonContent: 'Siz shu joydasiz!'
+            });
+            map.geoObjects.add(marker);
+
+            // Foydalanuvchi kiritgan uzunlik va kenglik qiymatlari
+            var uzunlik = parseFloat(prompt("Uzunlikni kiriting:"));
+            var kenglik = parseFloat(prompt("Kenglikni kiriting:"));
+
+            // Markerni yangilash va yangi kordinatalar bilan o'rnating
+            marker.geometry.setCoordinates([uzunlik, kenglik]);
+            map.setCenter([uzunlik, kenglik]);
+        }
+    </script>
+</body>
+</html>

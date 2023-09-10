@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Taksi Xaritali Navigator</title>
+    <!-- Yandex.Maps API-ni sahifaga qoshib olish -->
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=42f74753-1f3a-4018-bcd9-bce1fd7dea21&lang=uz_UZ" type="text/javascript"></script>
+</head>
+<body>
+    <h1>Taksi Xaritali Navigator</h1>
+    <div id="map" style="width: 100%; height: 500px;"></div>
+
+    <script>
+        ymaps.ready(function () {
+            // Xaritaning boshlang'ich joylashgan joyini aniqlang (masalan, Toshkent).
+            var myMap = new ymaps.Map('map', {
+                center: [41.311, 69.279],
+                zoom: 13 // Xaritaning o'lchami
+            });
+
+            // Boshqa joylarni aniqlash uchun markerlar yaratish
+            var places = [
+                { name: 'Restoran A', coordinates: [41.305, 69.273] },
+                { name: 'Restoran B', coordinates: [41.310, 69.280] },
+                { name: 'Mehmonxona X', coordinates: [41.315, 69.270] }
+            ];
+
+            // Markerlarni xaritaga qo'shish
+            for (var i = 0; i < places.length; i++) {
+                var place = places[i];
+                var placemark = new ymaps.Placemark(place.coordinates, {
+                    hintContent: place.name,
+                    balloonContent: 'Bura yo\'llanish uchun boshqa malumotlar'
+                });
+
+                myMap.geoObjects.add(placemark);
+            }
+        });
+    </script>
+</body>
+</html>

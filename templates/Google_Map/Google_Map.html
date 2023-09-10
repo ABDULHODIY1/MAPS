@@ -1,0 +1,186 @@
+<!--&lt;!&ndash;&lt;!&ndash;<!DOCTYPE html>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;<html>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;<head>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;    <meta charset="utf-8">&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;    <title>ChatGPT Example</title>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;</head>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;<body>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;    <h1>ChatGPT Example</h1>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;    <textarea id="input" rows="4" cols="50" placeholder="Savolingizni yozing..."></textarea>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;    <button onclick="generateResponse()">Javob olish</button>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;    <h2>Javob:</h2>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;    <p id="output"></p>&ndash;&gt;&ndash;&gt;-->
+
+<!--&lt;!&ndash;&lt;!&ndash;    <script>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;        function generateResponse() {&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;            const inputText = document.getElementById('input').value;&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;            const api_key = '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'; // O'z API kalitini kiritish kerak&ndash;&gt;&ndash;&gt;-->
+
+<!--&lt;!&ndash;&lt;!&ndash;            fetch('https://api.openai.com/v1/engines/text-davinci-002/completions', {&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                method: 'POST',&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                headers: {&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                    'Authorization': `Bearer ${api_key}`,&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                    'Content-Type': 'application/json'&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                },&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                body: JSON.stringify({&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                    prompt: inputText,&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                    max_tokens: 50&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                })&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;            })&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;            .then(response => response.json())&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;            .then(data => {&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                const responseText = data.choices[0].text.trim();&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                document.getElementById('output').textContent = responseText;&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;            })&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;            .catch(error => {&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                console.error(error);&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;            });&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;        }&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;    </script>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;</body>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;</html>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;<!DOCTYPE html>&ndash;&gt;-->
+<!--&lt;!&ndash;<html>&ndash;&gt;-->
+<!--&lt;!&ndash;<head>&ndash;&gt;-->
+<!--&lt;!&ndash;    <meta charset="utf-8">&ndash;&gt;-->
+<!--&lt;!&ndash;    <title>ChatGPT Example</title>&ndash;&gt;-->
+<!--&lt;!&ndash;</head>&ndash;&gt;-->
+<!--&lt;!&ndash;<body>&ndash;&gt;-->
+<!--&lt;!&ndash;    <h1>ChatGPT Example</h1>&ndash;&gt;-->
+<!--&lt;!&ndash;    <textarea id="input" rows="4" cols="50" placeholder="Savolingizni yozing..."></textarea>&ndash;&gt;-->
+<!--&lt;!&ndash;    <button onclick="generateResponse()">Javob olish</button>&ndash;&gt;-->
+<!--&lt;!&ndash;    <h2>Javob:</h2>&ndash;&gt;-->
+<!--&lt;!&ndash;    <p id="output"></p>&ndash;&gt;-->
+
+<!--&lt;!&ndash;    <script>&ndash;&gt;-->
+<!--&lt;!&ndash;        function generateResponse() {&ndash;&gt;-->
+<!--&lt;!&ndash;            const inputText = document.getElementById('input').value;&ndash;&gt;-->
+<!--&lt;!&ndash;            const api_key = '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'; // O'z API kalitini kiritish kerak&ndash;&gt;-->
+
+<!--&lt;!&ndash;            fetch('https://api.openai.com/v1/engines/text-davinci-002/completions', {&ndash;&gt;-->
+<!--&lt;!&ndash;                method: 'POST',&ndash;&gt;-->
+<!--&lt;!&ndash;                headers: {&ndash;&gt;-->
+<!--&lt;!&ndash;                    'Authorization': `Bearer ${api_key}`,&ndash;&gt;-->
+<!--&lt;!&ndash;                    'Content-Type': 'application/json'&ndash;&gt;-->
+<!--&lt;!&ndash;                },&ndash;&gt;-->
+<!--&lt;!&ndash;                body: JSON.stringify({&ndash;&gt;-->
+<!--&lt;!&ndash;                    prompt: inputText,&ndash;&gt;-->
+<!--&lt;!&ndash;                    max_tokens: 50&ndash;&gt;-->
+<!--&lt;!&ndash;                })&ndash;&gt;-->
+<!--&lt;!&ndash;            })&ndash;&gt;-->
+<!--&lt;!&ndash;            .then(response => response.json())&ndash;&gt;-->
+<!--&lt;!&ndash;            .then(data => {&ndash;&gt;-->
+<!--&lt;!&ndash;                const responseText = data.choices[0].text.trim();&ndash;&gt;-->
+<!--&lt;!&ndash;                document.getElementById('output').textContent = responseText;&ndash;&gt;-->
+<!--&lt;!&ndash;            })&ndash;&gt;-->
+<!--&lt;!&ndash;            .catch(error => {&ndash;&gt;-->
+<!--&lt;!&ndash;                console.error(error);&ndash;&gt;-->
+<!--&lt;!&ndash;            });&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+<!--&lt;!&ndash;    </script>&ndash;&gt;-->
+<!--&lt;!&ndash;</body>&ndash;&gt;-->
+<!--&lt;!&ndash;</html>&ndash;&gt;-->
+<!--<!DOCTYPE html>-->
+<!--<html>-->
+<!--<head>-->
+<!--    <meta charset="utf-8">-->
+<!--    <title>Navigator Web Ilova</title>-->
+<!--    <style>-->
+<!--        #map {-->
+<!--            height: 400px;-->
+<!--            width: 100%;-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+<!--    <h1>Navigator Web Ilova</h1>-->
+<!--    <p>Turgan joyingiz va yurgan masofangizni ko'rish uchun quyidagi tugmani bosing:</p>-->
+<!--    <button onclick="showLocation()">Joylashuvni ko'rsatish</button>-->
+<!--    <p>Turgan joy: <span id="location"></span></p>-->
+<!--    <p>Yurgan masofa (metr): <span id="distance"></span></p>-->
+<!--    <div id="map"></div>-->
+
+<!--    <script>-->
+<!--        let userLocation;-->
+
+<!--        function showLocation() {-->
+<!--            if ("geolocation" in navigator) {-->
+<!--                navigator.geolocation.getCurrentPosition(function(position) {-->
+<!--                    userLocation = {-->
+<!--                        latitude: position.coords.latitude,-->
+<!--                        longitude: position.coords.longitude-->
+<!--                    };-->
+
+<!--                    document.getElementById("location").textContent = userLocation.latitude + ", " + userLocation.longitude;-->
+
+<!--                    calculateDistance(userLocation.latitude, userLocation.longitude);-->
+<!--                    displayMap(userLocation.latitude, userLocation.longitude);-->
+<!--                });-->
+<!--            } else {-->
+<!--                alert("Geolocation is not supported in this browser.");-->
+<!--            }-->
+<!--        }-->
+
+<!--        function calculateDistance(lat, lon) {-->
+<!--            // Turgan joyingiz koordinatlari (misol uchun)-->
+<!--            const destinationLat = 41.2942336;-->
+<!--            const destinationLon = 69.2518912;-->
+
+<!--            // Masofani hisoblash-->
+<!--            const earthRadius = 6371000; // Metrda-->
+<!--            const dLat = (lat - destinationLat) * Math.PI / 180;-->
+<!--            const dLon = (lon - destinationLon) * Math.PI / 180;-->
+<!--            const a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.cos(lat * Math.PI / 180) * Math.cos(destinationLat * Math.PI / 180) * Math.sin(dLon/2) * Math.sin(dLon/2);-->
+<!--            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));-->
+<!--            const distance = earthRadius * c;-->
+
+<!--            document.getElementById("distance").textContent = distance.toFixed(2) + " metr";-->
+<!--        }-->
+
+<!--        function displayMap(lat, lon) {-->
+<!--            const mapDiv = document.getElementById("map");-->
+<!--            const map = new google.maps.Map(mapDiv, {-->
+<!--                center: { lat, lng: lon },-->
+<!--                zoom: 15-->
+<!--            });-->
+
+<!--            const marker = new google.maps.Marker({-->
+<!--                position: { lat, lng: lon },-->
+<!--                map: map,-->
+<!--                title: "Sizning joylashuvingiz"-->
+<!--            });-->
+<!--        }-->
+<!--    </script>-->
+<!--    <script async defer-->
+<!--        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLDCuFrllfxG0_5ZXFhkzrCUQ2CAX96F4&callback=initMap">-->
+<!--    </script>-->
+<!--</body>-->
+<!--</html>-->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Web Navigator</title>
+</head>
+<body>
+    <label for="url">Manzilni kiriting:</label>
+    <input type="text" id="url" placeholder="https://example.com">
+    <button onclick="navigate()">Go</button>
+
+    <iframe id="webFrame" width="110%"></iframe>
+
+    <script>
+        function navigate() {
+            var urlInput = document.getElementById('url').value;
+            var webFrame = document.getElementById('webFrame');
+
+            // Xavfsizlik uchun protokolni qo'shish
+            if (!urlInput.startsWith("http://") && !urlInput.startsWith("https://")) {
+                urlInput = "http://" + urlInput;
+            }
+
+            // IFrame yordamida saytni ochish
+            webFrame.src = urlInput;
+        }
+    </script>
+</body>
+</html>

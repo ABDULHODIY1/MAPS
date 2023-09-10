@@ -1,0 +1,122 @@
+<!--&lt;!&ndash;<!DOCTYPE html>&ndash;&gt;-->
+<!--&lt;!&ndash;<html>&ndash;&gt;-->
+<!--&lt;!&ndash;<head>&ndash;&gt;-->
+<!--&lt;!&ndash;    <title>Yandex Map Example</title>&ndash;&gt;-->
+<!--&lt;!&ndash;    <style>&ndash;&gt;-->
+<!--&lt;!&ndash;        #map {&ndash;&gt;-->
+<!--&lt;!&ndash;            height: 400px;&ndash;&gt;-->
+<!--&lt;!&ndash;            width: 100%;&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+<!--&lt;!&ndash;    </style>&ndash;&gt;-->
+<!--&lt;!&ndash;</head>&ndash;&gt;-->
+<!--&lt;!&ndash;<body>&ndash;&gt;-->
+<!--&lt;!&ndash;    <h1>Yandex Map Example</h1>&ndash;&gt;-->
+<!--&lt;!&ndash;    <div id="map"></div>&ndash;&gt;-->
+
+<!--&lt;!&ndash;    <script src="https://api-maps.yandex.ru/2.1/?apikey=42f74753-1f3a-4018-bcd9-bce1fd7dea21&lang=uz_UZ" type="text/javascript"></script>&ndash;&gt;-->
+<!--&lt;!&ndash;    <script>&ndash;&gt;-->
+<!--&lt;!&ndash;        ymaps.ready(init);&ndash;&gt;-->
+
+<!--&lt;!&ndash;        function init() {&ndash;&gt;-->
+<!--&lt;!&ndash;            var map = new ymaps.Map('map', {&ndash;&gt;-->
+<!--&lt;!&ndash;                center: [41.2995, 69.2401], // Toshkent koordinatalari&ndash;&gt;-->
+<!--&lt;!&ndash;                zoom: 12&ndash;&gt;-->
+<!--&lt;!&ndash;            });&ndash;&gt;-->
+
+<!--&lt;!&ndash;            // Geolocation xizmatidan foydalanish&ndash;&gt;-->
+<!--&lt;!&ndash;            ymaps.geolocation.get({&ndash;&gt;-->
+<!--&lt;!&ndash;                provider: 'auto',&ndash;&gt;-->
+<!--&lt;!&ndash;                mapStateAutoApply: true&ndash;&gt;-->
+<!--&lt;!&ndash;            }).then(function(result) {&ndash;&gt;-->
+<!--&lt;!&ndash;                var location = result.geoObjects.get(0).geometry.getCoordinates();&ndash;&gt;-->
+<!--&lt;!&ndash;                map.setCenter(location);&ndash;&gt;-->
+
+<!--&lt;!&ndash;                var marker = new ymaps.Placemark(location, {&ndash;&gt;-->
+<!--&lt;!&ndash;                    hintContent: 'Your Location',&ndash;&gt;-->
+<!--&lt;!&ndash;                    balloonContent: 'You are here!'&ndash;&gt;-->
+<!--&lt;!&ndash;                });&ndash;&gt;-->
+<!--&lt;!&ndash;                map.geoObjects.add(marker);&ndash;&gt;-->
+<!--&lt;!&ndash;            });&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+<!--&lt;!&ndash;    </script>&ndash;&gt;-->
+<!--&lt;!&ndash;</body>&ndash;&gt;-->
+<!--&lt;!&ndash;</html>&ndash;&gt;-->
+<!--<!DOCTYPE html>-->
+<!--<html>-->
+<!--<head>-->
+<!--    <meta charset="utf-8">-->
+<!--    <title>Yandex Map Misoli</title>-->
+<!--    <style>-->
+<!--        #map {-->
+<!--            height: 400px;-->
+<!--            width: 100%;-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+<!--    <h1>Yandex Map Misoli</h1>-->
+<!--    <div id="map"></div>-->
+
+<!--    <script src="https://api-maps.yandex.ru/2.1/?lang=uz_UZ" type="text/javascript"></script>-->
+<!--    <script type="text/javascript">-->
+<!--        ymaps.ready(init);-->
+
+<!--        function init() {-->
+<!--            var map = new ymaps.Map('map', {-->
+<!--                center: [],-->
+<!--                zoom: 12-->
+<!--            });-->
+
+<!--            // Geolocation xizmatidan foydalanish-->
+<!--            ymaps.geolocation.get({-->
+<!--                provider: 'auto',-->
+<!--                mapStateAutoApply: true-->
+<!--            }).then(function(result) {-->
+<!--                var location = result.geoObjects.get(0).geometry.getCoordinates();-->
+<!--                map.setCenter(location);-->
+
+<!--                var marker = new ymaps.Placemark(location, {-->
+<!--                    hintContent: 'Sizning Joylashuvingiz',-->
+<!--                    balloonContent: 'Siz shu joydasiz!'-->
+<!--                });-->
+<!--                map.geoObjects.add(marker);-->
+<!--            });-->
+<!--        }-->
+<!--    </script>-->
+<!--</body>-->
+<!--</html>-->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Yandex Map Misoli</title>
+    <style>
+        #map {
+            height: 400px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <h1>Yandex Map Misoli</h1>
+    <div id="map"></div>
+
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=42f74753-1f3a-4018-bcd9-bce1fd7dea21&lang=uz_UZ" type="text/javascript"></script>
+    <script type="text/javascript">
+        ymaps.ready(init);
+
+        function init() {
+            var map = new ymaps.Map('map', {
+                center: [41.2942336, 69.2518912], // Sizning kordinatalaringiz
+                zoom: 12
+            });
+
+            var marker = new ymaps.Placemark([41.2942336, 69.2518912], { // Sizning kordinatalaringiz
+                hintContent: 'Sizning Joylashuvingiz',
+                balloonContent: 'Siz shu joydasiz!'
+            });
+            map.geoObjects.add(marker);
+        }
+    </script>
+</body>
+</html>

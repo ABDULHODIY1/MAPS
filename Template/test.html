@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API ga malumot yuborish</title>
+</head>
+
+<body>
+    <h1>Data1: <span id="data1Value"></span></h1>
+    <h1>Data2: <span id="data2Value"></span></h1>
+
+    <div id="map" style="width: 400px; height: 300px;"></div>
+
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=42f74753-1f3a-4018-bcd9-bce1fd7dea21&lang=en_US"
+        type="text/javascript"></script>
+    <script>
+        ymaps.ready(init);
+
+        var latitude; // O'zgaruvchi latitude ni e'lon qilamiz
+        var longitude; // O'zgaruvchi longitude ni e'lon qilamiz
+
+        function init() {
+            var map = new ymaps.Map('map', {
+                center: [55.7558, 37.6176], // Default center
+                zoom: 12,
+                type: 'yandex#hybrid',
+            });
+
+            // Get current user's location
+            if ("geolocation" in navigator) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    latitude = position.coords.latitude; // O'zgaruvchiga latitude ni o'rnating
+                    longitude = position.coords.longitude; // O'zgaruvchiga longitude ni o'rnating
+
+                    map.setCenter([latitude, longitude]);
+
+                    // Add a marker to the map
+                    var marker = new ymaps.Placemark([latitude, longitude], {
+                        hintContent: 'Your Location',
+                        balloonContent: 'You are here!'
+                    });
+
+                    map.geoObjects.add(marker);
+                });
+            } else {
+                console.log("Geolocation is not available in this browser.");
+            }
+        }
+
+        // Malumotlarni API ga post qilish
+        function postDataToAPI() {
+            // Bu qismni o'zgartiring - API ning URL manzili
+            fetch('http://127.0.0.1:8000/api/locations/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ latitude, longitude }),
+            })
+                .then(response => response.json())
+                .then(json => {
+                    // API dan qaytgan malumotlarni o'qib, agar kerak bo'lsa ishlatishingiz mumkin
+                    console.log(json);
+                    // Malumotni HTML-ga joylash
+                    document.getElementById("data1Value").textContent = json.data1;
+                    document.getElementById("data2Value").textContent = json.data2;
+                });
+        }
+
+        // Malumotlarni API ga har 0.50 soniyada bir post qilish
+        setInterval(postDataToAPI, 500); // 0.50 soniya (500 ms)
+    </script>
+    <style>
+        .ymaps-2-1-79-controls__control_toolbar.ymaps-2-1-79-user-selection-none{
+            background: linear-gradient(60deg,orange,yellow,white);
+        }
+        .ymaps-2-1-79-float-button.ymaps-2-1-79-_hidden-text{
+            background: linear-gradient(60deg,orange,yellow,white);
+            color: black;
+        }
+        .ymaps-2-1-79-gotoymaps__container{
+            background: linear-gradient(60deg,orange,yellow,white);
+            color: black;
+        }
+        .ymaps-2-1-79-listbox__button.ymaps-2-1-79-_hidden-text.ymaps-2-1-79-user-selection-none{
+            background: linear-gradient(60deg,orange,yellow,white);
+        }
+
+        .ymaps-2-1-79-zoom__plus.ymaps-2-1-79-zoom__button.ymaps-2-1-79-float-button.ymaps-2-1-79-user-selection-none{
+            background: linear-gradient(60deg,orange,yellow,white);
+        }
+        .ymaps-2-1-79-zoom__minus.ymaps-2-1-79-zoom__button.ymaps-2-1-79-float-button.ymaps-2-1-79-user-selection-none{
+            background: linear-gradient(60deg,orange,yellow,white);
+        }
+        .ymaps-2-1-79-listbox__panel.ymaps-2-1-79-i-custom-scroll.ymaps-2-1-79-listbox__panel_animation_show{
+            background: linear-gradient(60deg,orange,yellow,white);
+        }
+        .ymaps-2-1-79-listbox__button.ymaps-2-1-79-user-selection-none.ymaps-2-1-79-_visible-arrow{
+            background: linear-gradient(60deg,orange,yellow,white);
+        }
+        .ymaps-2-1-79-float-button.ymaps-2-1-79-float-button_traffic_left{
+            background: linear-gradient(60deg,orange,yellow,white);
+        }
+        .ymaps-2-1-79-listbox__list-separator{
+            background: none;
+        }
+        .ymaps-2-1-79-zoom__runner.ymaps-2-1-79-zoom__button.ymaps-2-1-79-float-button.ymaps-2-1-79-zoom__runner__transition.ymaps-2-1-79-touch-action-none.ymaps-2-1-79-user-selection-none{
+            background: linear-gradient(60deg,orange,yellow,white);
+        }
+        .ymaps-2-1-79-zoom__scale{
+            background: linear-gradient(60deg,orange,yellow,white);
+        }
+    </style>
+</body>
+
+</html>

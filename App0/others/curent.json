@@ -1,0 +1,6 @@
+{"all":["path('App/',XViewa.as_views(),name='a')",
+"path('banner/',XViewb.as_views(),name='b')",
+"path('docs',XViewc.as_views(),name='d')",
+"path('clients',XViewd.as_views(),name='c')",
+"path('info',XViewi.as_views(),name='i')",
+"path('pjys/',XViewf.as_views(),name='f')"]}

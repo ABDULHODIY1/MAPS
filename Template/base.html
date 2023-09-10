@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maga Server</title>
+</head>
+
+<body>
+    <center>
+        <span id="l9pmmjmnmkhgvghhjjgghgffhffvn66jggthgfr56dxddersres5rtr_passwoardorusernameerr">Passwoard Or User name
+            Not Found</span>
+            <span id="l9pmmjmnmkhgvghhjjgghgffhffvn66jggthgfr56dxddersres5rtr_passwoardorusernameerr2"></span>
+    </center>
+    <script>
+        let fhj = document.querySelector("#l9pmmjmnmkhgvghhjjgghgffhffvn66jggthgfr56dxddersres5rtr_passwoardorusernameerr")
+        let fhj2 = document.querySelector("#l9pmmjmnmkhgvghhjjgghgffhffvn66jggthgfr56dxddersres5rtr_passwoardorusernameerr2")
+
+        // console.log(urls)
+        const User_name = prompt("User name?")
+        const Password = prompt(" Passwoard?")
+        if (User_name === "Admin" & Password == "Admin") {
+            alert(`thank you for ${User_name}`)
+            fhj.innerHTML = "<a href='{% url 'Map' %}'>Maps For Dispatchers</a>"
+            fhj2.innerHTML = "<br><a href='{% url 'Map2' %}'>Maps For Postmans</a>   <br><a href='{% url 'location-list' %}'>API Get Post </a> "
+
+        } else {
+            alert("Error: passwoard or Username Not Found")
+        }
+    </script>
+
+
+</body>
+
+</html>

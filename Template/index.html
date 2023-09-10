@@ -1,0 +1,86 @@
+<!--<!DOCTYPE html>-->
+<!--<html>-->
+<!--<head>-->
+<!--    <title>Yandex Map Example</title>-->
+<!--    <style>-->
+<!--        #map {-->
+<!--            height: 400px;-->
+<!--            width: 100%;-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+<!--    <h1>Yandex Map Example</h1>-->
+<!--    <div id="map"></div>-->
+
+<!--    <script src="https://api-maps.yandex.ru/2.1/?apikey=42f74753-1f3a-4018-bcd9-bce1fd7dea21&lang=en_US" type="text/javascript"></script>-->
+<!--    <script>-->
+<!--        ymaps.ready(init);-->
+
+<!--        function init() {-->
+<!--            var map = new ymaps.Map('map', {-->
+<!--                center: [55.7558, 37.6176], // Moscow coordinates-->
+<!--                zoom: 12-->
+<!--            });-->
+
+<!--            // Add a marker to the map-->
+<!--            var marker = new ymaps.Placemark([55.7558, 37.6176], {-->
+<!--                hintContent: 'Moscow',-->
+<!--                balloonContent: 'This is Moscow!'-->
+<!--            });-->
+
+<!--            map.geoObjects.add(marker);-->
+<!--        }-->
+<!--    </script>-->
+<!--</body>-->
+<!--</html>-->
+{%load static%}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Maga Server Map Test</title>
+    <link rel="stylesheet" href="{%static'/css/base.css'%}">
+    <style>
+        #map {
+            height: 400px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <h1>My Location</h1>
+    <div id="map"></div>
+
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=42f74753-1f3a-4018-bcd9-bce1fd7dea21&lang=en_US" type="text/javascript"></script>
+    <script>
+        ymaps.ready(init);
+
+        function init() {
+            var map = new ymaps.Map('map', {
+                center: [55.7558, 37.6176], // Default center
+                zoom: 12
+            });
+
+            // Get current user's location
+            if ("geolocation" in navigator) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    var latitude = position.coords.latitude;
+                    var longitude = position.coords.longitude;
+
+                    map.setCenter([latitude, longitude]);
+
+                    // Add a marker to the map
+                    var marker = new ymaps.Placemark([latitude, longitude], {
+                        hintContent: 'Your Location',
+                        balloonContent: 'You are here!'
+                    });
+
+                    map.geoObjects.add(marker);
+                });
+            } else {
+                console.log("Geolocation is not available in this browser.");
+            }
+        }
+    </script>
+</body>
+</html>

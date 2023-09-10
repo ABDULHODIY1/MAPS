@@ -1,0 +1,165 @@
+<!--&lt;!&ndash; real Yandex Xaritasi // Real Yandex Maps &ndash;&gt;-->
+
+<!--<!DOCTYPE html>-->
+<!--<html>-->
+<!--<head>-->
+<!--    <title>Maga Server </title>-->
+<!--    <style>-->
+<!--        #map {-->
+<!--            height: 400px;-->
+<!--            width: 100%;-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+<!--    <h1>My Location</h1>-->
+<!--    <div id="map"></div>-->
+
+<!--    <script src="https://api-maps.yandex.ru/2.1/?apikey=42f74753-1f3a-4018-bcd9-bce1fd7dea21&lang=en_US" type="text/javascript"></script>-->
+<!--    <script>-->
+<!--        ymaps.ready(init);-->
+
+<!--        function init() {-->
+<!--            var map = new ymaps.Map('map', {-->
+<!--                center: [55.7558, 37.6176], // Default center-->
+<!--                zoom: 12-->
+<!--            });-->
+
+<!--            // Get current user's location-->
+<!--            if ("geolocation" in navigator) {-->
+<!--                navigator.geolocation.getCurrentPosition(function(position) {-->
+<!--                    var latitude = position.coords.latitude;-->
+<!--                    var longitude = position.coords.longitude;-->
+
+<!--                    map.setCenter([latitude, longitude]);-->
+
+<!--                    // Add a marker to the map-->
+<!--                    var marker = new ymaps.Placemark([latitude, longitude], {-->
+<!--                        hintContent: 'Your Location',-->
+<!--                        balloonContent: 'You are here!'-->
+<!--                    });-->
+
+<!--                    map.geoObjects.add(marker);-->
+<!--                });-->
+<!--            } else {-->
+<!--                console.log("Geolocation is not available in this browser.");-->
+<!--            }-->
+<!--        }-->
+<!--    </script>-->
+<!--</body>-->
+<!--</html>-->
+<!-- real Yandex Xaritasi // Real Yandex Maps -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Maga Server </title>
+    <style>
+        #map {
+            height: 400px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <h1>Server App For dispatcher</h1>
+    <div id="map"></div>
+
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=42f74753-1f3a-4018-bcd9-bce1fd7dea21&lang=en_US" type="text/javascript"></script>
+    <script>
+        ymaps.ready(init);
+
+        function init() {
+            var map = new ymaps.Map('map', {
+                center: [55.7558, 37.6176], // Default center
+                zoom: 12,
+                type: 'yandex#hybrid',
+            });
+
+            // Get current user's location
+            if ("geolocation" in navigator) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    var latitude = position.coords.latitude;
+                    var longitude = position.coords.longitude;
+
+                    map.setCenter([latitude, longitude]);
+
+                    // Add a marker to the map
+                    var marker = new ymaps.Placemark([latitude, longitude], {
+                        hintContent: 'Your Location',
+                        balloonContent: 'You are here!'
+                    });
+
+                    map.geoObjects.add(marker);
+
+                    // Fetch data from your Django API
+                    fetch('http://127.0.0.1:8000/api/locations/', {
+                        method: 'GET',
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        // Data from the API
+                        var locationData = data[0]; // Change this based on your API response structure
+
+                        // Get address using Yandex Geocoder
+                        ymaps.geocode([locationData.latitude, locationData.longitude]).then(function(result) {
+                            var address = result.geoObjects.get(0).getAddressLine();
+                            console.log('Address:', address);
+
+                            // Display the address on the page
+                            document.getElementById('map').insertAdjacentHTML('beforeend', '<p>Address: ' + address + '</p>');
+                        });
+                    });
+                });
+            } else {
+                console.log("Geolocation is not available in this browser.");
+            }
+        }
+    </script>
+    <style>
+        /* .ymaps-2-1-79-float-button.ymaps-2-1-79-_hidden-text{
+
+        } */
+
+        .ymaps-2-1-79-controls__control_toolbar.ymaps-2-1-79-user-selection-none{
+            background: linear-gradient(60deg,orange,yellow,white);
+        }
+        .ymaps-2-1-79-float-button.ymaps-2-1-79-_hidden-text{
+            background: linear-gradient(60deg,orange,yellow,white);
+            color: black;
+        }
+        .ymaps-2-1-79-gotoymaps__container{
+            background: linear-gradient(60deg,orange,yellow,white);
+            color: black;
+        }
+        .ymaps-2-1-79-listbox__button.ymaps-2-1-79-_hidden-text.ymaps-2-1-79-user-selection-none{
+            background: linear-gradient(60deg,orange,yellow,white);
+        }
+
+        .ymaps-2-1-79-zoom__plus.ymaps-2-1-79-zoom__button.ymaps-2-1-79-float-button.ymaps-2-1-79-user-selection-none{
+            background: linear-gradient(60deg,orange,yellow,white);
+        }
+        .ymaps-2-1-79-zoom__minus.ymaps-2-1-79-zoom__button.ymaps-2-1-79-float-button.ymaps-2-1-79-user-selection-none{
+            background: linear-gradient(60deg,orange,yellow,white);
+        }
+        .ymaps-2-1-79-listbox__panel.ymaps-2-1-79-i-custom-scroll.ymaps-2-1-79-listbox__panel_animation_show{
+            background: linear-gradient(60deg,orange,yellow,white);
+        }
+        .ymaps-2-1-79-listbox__button.ymaps-2-1-79-user-selection-none.ymaps-2-1-79-_visible-arrow{
+            background: linear-gradient(60deg,orange,yellow,white);
+        }
+        .ymaps-2-1-79-float-button.ymaps-2-1-79-float-button_traffic_left{
+            background: linear-gradient(60deg,orange,yellow,white);
+        }
+        .ymaps-2-1-79-listbox__list-separator{
+            background: none;
+        }
+        .ymaps-2-1-79-zoom__runner.ymaps-2-1-79-zoom__button.ymaps-2-1-79-float-button.ymaps-2-1-79-zoom__runner__transition.ymaps-2-1-79-touch-action-none.ymaps-2-1-79-user-selection-none{
+            background: linear-gradient(60deg,orange,yellow,white);
+        }
+        .ymaps-2-1-79-zoom__scale{
+            background: linear-gradient(60deg,orange,yellow,white);
+        }
+    </style>
+</body>
+</html>
